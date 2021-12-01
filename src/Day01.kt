@@ -1,17 +1,13 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    fun countDepthTimes(input: List<Int>): Int {
+        return input.windowed(2).count { (left, right) -> right > left }
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    fun countWindowedSumDepths(input: List<Int>): Int {
+        return input.windowed(3) {it.sum()}.windowed(2).count { (curr, next) -> next > curr }
     }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
 
     val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    println(countDepthTimes(input))
+    println(countWindowedSumDepths(input))
 }
